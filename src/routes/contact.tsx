@@ -54,14 +54,14 @@ function ContactPage() {
       <form onSubmit={submit} noValidate className="request-form">
         <div><p className="eyebrow">Demande de service</p><h2 className="mt-2 font-display text-2xl font-bold">Comment pouvons-nous vous aider ?</h2></div>
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Nom complet" name="name" placeholder="Votre nom" error={errors.name} />
-          <Field label="Téléphone" name="phone" type="tel" placeholder="Ex. 70 00 00 00" error={errors.phone} />
+          <Field label="Nom complet" name="name" placeholder="Votre nom" error={errors["name"]} />
+          <Field label="Téléphone" name="phone" type="tel" placeholder="Ex. 70 00 00 00" error={errors["phone"]} />
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
-          <label className="form-label">Service souhaité<select name="service" defaultValue="" className="form-control"><option value="" disabled>Sélectionnez</option><option>Lavage de véhicule</option><option>Entretien de véhicule</option><option>Achat d’accessoires</option><option>Achat de véhicule</option><option>Location de véhicule</option></select>{errors.service ? <span className="form-error">{errors.service}</span> : null}</label>
-          <Field label="Votre véhicule" name="vehicle" placeholder="Marque et modèle (facultatif)" error={errors.vehicle} />
+          <label className="form-label">Service souhaité<select name="service" defaultValue="" className="form-control"><option value="" disabled>Sélectionnez</option><option>Lavage de véhicule</option><option>Entretien de véhicule</option><option>Achat d’accessoires</option><option>Achat de véhicule</option><option>Location de véhicule</option></select>{errors["service"] ? <span className="form-error">{errors["service"]}</span> : null}</label>
+          <Field label="Votre véhicule" name="vehicle" placeholder="Marque et modèle (facultatif)" error={errors["vehicle"]} />
         </div>
-        <label className="form-label">Détails de la demande<textarea name="message" rows={5} maxLength={600} className="form-control resize-none" placeholder="Décrivez le service souhaité, vos dates ou toute information utile..." />{errors.message ? <span className="form-error">{errors.message}</span> : null}</label>
+        <label className="form-label">Détails de la demande<textarea name="message" rows={5} maxLength={600} className="form-control resize-none" placeholder="Décrivez le service souhaité, vos dates ou toute information utile..." />{errors["message"] ? <span className="form-error">{errors["message"]}</span> : null}</label>
         <Button type="submit" size="lg" className="w-full sm:w-auto"><Send /> Envoyer via WhatsApp</Button>
         <p className="text-xs leading-5 text-muted-foreground">En envoyant, WhatsApp s’ouvrira avec votre demande prête à être transmise.</p>
       </form>
@@ -70,6 +70,6 @@ function ContactPage() {
   </main>;
 }
 
-function Field({ label, name, type = "text", placeholder, error }: { label: string; name: string; type?: string; placeholder: string; error?: string }) {
+function Field({ label, name, type = "text", placeholder, error }: { label: string; name: string; type?: string; placeholder: string; error?: string | undefined }) {
   return <label className="form-label">{label}<input className="form-control" name={name} type={type} placeholder={placeholder} maxLength={80} />{error ? <span className="form-error">{error}</span> : null}</label>;
 }
